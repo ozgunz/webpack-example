@@ -3,7 +3,7 @@ const webpack = require('webpack');
 module.exports = {
     entry : {
         home : ["./src/js/home.js", "./src/scss/home.scss"],
-        profile: ["./src/js/profile.js","./src/scss/profile.scss"]
+        //profile: ["./src/js/profile.js","./src/scss/profile.scss"]
     },
     output: {
         path : __dirname,

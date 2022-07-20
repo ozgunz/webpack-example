@@ -1,13 +1,22 @@
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const webpack = require('webpack');
 module.exports = {
-    entry : ["./dist/js/app.bundle.js", "./dist/css/wizard.scss"],
+    entry : {
+        index : ["./src/js/index.js", "./src/scss/index.scss"],
+    },
     output: {
         path : __dirname,
-        filename : "dist/js/app.js",
+        filename : "dist/js/[name].js",
     },
-    mode: "production",
-    watch: true,
-    plugins: [],
+    mode: "development",
+    watch: false,
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+        })
+    ],
     module: {
         rules: [
             {
@@ -20,6 +29,10 @@ module.exports = {
                     }
                 }
             }, //Babel
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
             {
                 test: /\.scss$/,
                 use: [
